@@ -3,7 +3,13 @@ const app = express();
 const http = require('http')
 const server = http.createServer(app)
 const { Server } = require("socket.io");
-const io = new Server(server);
+const io = new Server(server, {
+    cors: {
+        origin: "http://localhost:5173",
+        methods: ["GET", "POST"],
+        credentials: true
+    }
+});
 const mongoose = require('mongoose')
 const Users = require('./models/users')
 const Messages = require('./models/messages')
@@ -12,7 +18,12 @@ const session = require('express-session')
 const userRouter = require('./routes/userRouter')
 const messageRouter = require('./routes/messageRouter')
 mongoose.connect('mongodb://127.0.0.1:27017/Messenger').then(() => console.log('Connected to DB'))
-
+const cors = require('cors')
+app.use(cors({
+    origin: 'http://localhost:5173',
+    methods: ['POST', 'PUT', 'GET', 'OPTIONS', 'HEAD'],
+    credentials: true
+}))
 app.use(express.json())
 app.use(session({ secret: 'jedi' }))
 app.use((req, res, next) => {
@@ -28,6 +39,12 @@ app.get('/', (req, res) => {
 
 io.on('connection', (socket) => {
     console.log('a user connected');
+    socket.on('disconnect', () => {
+        console.log('user disconnected');
+    });
+    socket.on('chat message', (msg) => {
+        console.log('message: ' + msg);
+    });
 });
 
 app.use((err, req, res, next) => {

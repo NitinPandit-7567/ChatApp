@@ -1,0 +1,108 @@
+.messageWindow {
+    position: absolute;
+    height: 85%;
+    /* width: 62.5%; */
+    width: 60%;
+    border-radius: 10px;
+    /* padding: 20px; */
+    padding-top: 20px;
+    background-color: #222E35;
+    color: white;
+    overflow: auto;
+    /* margin-right: 50px; */
+    margin-left: 0px;
+    /* right: 50px; */
+    left: 30%;
+    border-top-left-radius: 0%;
+    border-bottom-left-radius: 0%;
+}
+
+.textBox {
+    position: fixed;
+    bottom: 7.5%;
+    width: 55%;
+    /* border: 1px solid #405461; */
+    padding-top: 0.5%;
+    padding-left: 3%;
+}
+
+.messageBox {
+    overflow-y: auto;
+    position: absolute;
+    height: 80%;
+    width: 100%;
+    background-color: #121B21;
+}
+
+.title {
+    /* position: absolute; */
+    padding: 5px;
+    width: 93%;
+    height: 8%;
+}
+
+.title h2 {
+    padding: 0px;
+    padding-left: 10px;
+    margin: 0px;
+}
+
+.notification {
+    /* display: inline-block; */
+    width: fit-content;
+    /* background-color: #53BDEB; */
+    background-color: #182229;
+    color: #678399;
+    border-radius: 10px;
+    padding: 10px;
+    margin: auto;
+    /* position: relative; */
+    /* left: 36%; */
+    /* left: 50%;
+    right: 50%; */
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: small;
+}
+
+.text {
+    border-radius: 10px;
+    padding: 10px;
+    width: fit-content;
+}
+
+.friend {
+    border-top-left-radius: 0px;
+    background-color: #202C33;
+    position: relative;
+    left: 2%;
+    margin-bottom: 20px;
+
+}
+
+.you {
+    border-top-right-radius: 0px;
+    background-color: #005C4B;
+    /* position: relative;
+    left: 80%; */
+    margin-left: auto;
+    margin-right: 20px;
+    margin-bottom: 20px;
+}
+
+.time {
+    padding: 0px;
+    font-size: x-small;
+    margin-left: auto;
+    width: fit-content;
+    color: lightgray;
+}
+
+.tick {
+    position: relative;
+    top: 5px;
+}
+
+.seen {
+    color: rgb(0, 204, 255);
+}

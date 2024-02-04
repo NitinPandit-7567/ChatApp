@@ -4,8 +4,6 @@ const AppError = require('../utils/AppError')
 const messagesSchema = new mongoose.Schema({
     users: [{
         type: mongoose.Schema.Types.ObjectId,
-        ref: 'Users',
-        unique: true
     }],
     messages: [
         {
@@ -15,6 +13,9 @@ const messagesSchema = new mongoose.Schema({
                     enum: ['new', 'info', 'delete']
                 },
                 message: {
+                    type: String
+                },
+                timestamp: {
                     type: String
                 }
             },
@@ -29,12 +30,19 @@ const messagesSchema = new mongoose.Schema({
                 },
                 text: {
                     type: String
+                },
+                seen: {
+                    type: Boolean,
+                    default: false
+                },
+                timestamp: {
+                    type: String
                 }
             }
         }
     ]
 }, { timestamps: true })
-messagesSchema.post('save', async function (next) {
+messagesSchema.pre('save', async function (next) {
     if (!this.isModified('users')) {
         return next;
     }
@@ -44,11 +52,13 @@ messagesSchema.post('save', async function (next) {
             let user2 = i !== this.users[0] ? this.users[0] : this.users[1];
             user1.chats.push({ user_id: user2, message_id: this._id });
             await user1.save()
+            console.log('Message ID updated for user: ', user1.username)
         }
         else {
             throw new AppError('404', 'User not found!')
         }
     }
+    console.log('FINAL MESSAGE: ', this)
     return next
 })
 

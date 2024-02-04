@@ -1,0 +1,23 @@
+.main {
+    display: flex;
+    /* width: 100vh; */
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.login {
+    /* display: flex;
+    /* flex-wrap: wrap; 
+    justify-content: center;
+    align-items: center;
+    flex-direction: column; */
+    text-align: center;
+    padding: 50px;
+    width: 600px;
+    height: 600px;
+}
+
+input {
+    margin: 5px;
+}
